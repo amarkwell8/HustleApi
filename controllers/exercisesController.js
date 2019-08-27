@@ -11,7 +11,7 @@ function exercisesController(Exercise){
         }
         if(!request.body.level){
             response.status(400);
-            return response.send('Level is required');
+            return response.send('Exercise Level is required');
         }
 
         exercise.save();
