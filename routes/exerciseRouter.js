@@ -6,7 +6,8 @@ function routes(Exercise) {
     const controller = exercisesController(Exercise);
 
     exerciseRouter.route('/exercises')
-        .get(controller.get);
+        .get(controller.get)
+        .post(controller.post);
 
     return exerciseRouter;
 }

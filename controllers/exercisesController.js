@@ -1,6 +1,23 @@
 function exercisesController(Exercise){
     function post(request, response){
-        
+        const exercise = new Exercise(request.body);
+        if(!request.body.name){
+            response.status(400);
+            return response.send('Name is required');
+        }
+        if(!request.body.muscle){
+            response.status(400);
+            return response.send('Muscle group is required');
+        }
+        if(!request.body.level){
+            response.status(400);
+            return response.send('Level is required');
+        }
+
+        exercise.save();
+
+        response.status(201);
+        return response.json(exercise);
     }
     function get(request, response){
         const query = {}; 
