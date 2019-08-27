@@ -24,6 +24,28 @@ function routes(Exercise) {
         .get((request, response) => {
             response.json(request.exercise);
         })
+        .put((request, response) => {
+            const { exercise } = request;
+            exercise.name = request.body.name;
+            exercise.muscle = request.body.muscle;
+            exercise.level = request.body.level;
+            exercise.description = request.body.description;
+
+            request.exercise.save((error) => {
+                if(error){
+                    return response.send(error);
+                }
+                return response.status(200).json(exercise);
+            });
+        })
+        .delete((request, response) => {
+            request.exercise.remove((error) => {
+                if(error){
+                    return response.send(error);
+                }
+                return response.sendStatus(204);
+            });
+        });
     return exerciseRouter;
 }
 
